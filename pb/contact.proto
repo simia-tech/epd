@@ -3,5 +3,5 @@ syntax = "proto3";
 package pb;
 
 message UnlockedContact {
-  map<string, bytes> section_key = 1;
+  map<string, bytes> section_keys = 1;
 }

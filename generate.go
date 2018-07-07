@@ -1,9 +1,6 @@
 package epd
 
 import (
-	"crypto/rand"
-
-	"github.com/lytics/base62"
 	"github.com/simia-tech/errx"
 
 	"github.com/simia-tech/epd/crypto/asymmetric"
@@ -24,10 +21,4 @@ func Generate() (*pb.UnlockedDocument, asymmetric.PrivateKey, error) {
 		Contacts:  map[string]*pb.UnlockedContact{},
 		Sections:  map[string]*pb.UnlockedSection{},
 	}, privateKey, nil
-}
-
-func randomID() string {
-	id := make([]byte, 16)
-	rand.Read(id)
-	return base62.StdEncoding.EncodeToString(id)[:16]
 }
