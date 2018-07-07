@@ -8,6 +8,18 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/golang/protobuf"
+  packages = ["proto"]
+  revision = "b4deda0973fb4c70b50d226b1af49f3da59f5265"
+  version = "v1.1.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lytics/base62"
+  packages = ["."]
+  revision = "827c93e361dee420018844675180331170dda747"
+
+[[projects]]
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
@@ -31,6 +43,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b136050d0fa40b2df3cd274a6a27ffe86026afecd0dbc7697e8f98e0fa365f47"
+  inputs-digest = "fbe478bf851760eb2c153473f2788da094f9a73a64860ed851168473103989d9"
   solver-name = "gps-cdcl"
   solver-version = 1
