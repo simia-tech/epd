@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/simia-tech/epd"
+	"github.com/simia-tech/epd/crypto/asymmetric"
 	"github.com/simia-tech/epd/pb"
 	"github.com/simia-tech/epd/resolver"
 )
@@ -54,4 +55,27 @@ func TestUnlockedFacadeLock(t *testing.T) {
 	assert.Len(t, lockedDocument.Contacts, 1)
 	assert.Len(t, lockedDocument.Sections, 1)
 	assert.NotEmpty(t, lockedDocument.Signature)
+}
+
+func TestLockedFacadeVerify(t *testing.T) {
+	document, _ := makeLockedDocument(t)
+	facade := epd.NewLockedFacade(document)
+	assert.NoError(t, facade.Verify())
+}
+
+func makeLockedDocument(tb testing.TB) (*pb.LockedDocument, asymmetric.PrivateKey) {
+	foreignDocument, _ := generateDocument(tb)
+	memoryResolver := &resolver.Memory{Documents: []*pb.UnlockedDocument{foreignDocument}}
+	contactID := foreignDocument.Id
+
+	document, privateKey := generateDocument(tb)
+	facade := epd.NewUnlockedFacade(document)
+
+	sectionID := facade.AddSection("Test")
+	facade.AddMember(sectionID, contactID)
+
+	lockedDocument, err := facade.Lock(privateKey, memoryResolver)
+	require.NoError(tb, err)
+
+	return lockedDocument, privateKey
 }

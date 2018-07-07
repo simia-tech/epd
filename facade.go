@@ -99,3 +99,24 @@ func (uf *UnlockedFacade) Lock(privateKey asymmetric.PrivateKey, resolver resolv
 
 	return document, nil
 }
+
+type LockedFacade struct {
+	document *pb.LockedDocument
+}
+
+func NewLockedFacade(document *pb.LockedDocument) *LockedFacade {
+	return &LockedFacade{document: document}
+}
+
+func (lf *LockedFacade) Verify() error {
+	signature := lf.document.Signature
+	lf.document.Signature = nil
+
+	documentBytes, err := lf.document.MarshalBinary()
+	lf.document.Signature = signature
+	if err != nil {
+		return errx.Annotatef(err, "marshal locked document")
+	}
+
+	return asymmetric.Verify(documentBytes, lf.document.PublicKey, signature)
+}
