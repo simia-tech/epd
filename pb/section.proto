@@ -6,3 +6,7 @@ message UnlockedSection {
   string name = 1;
   bytes content_key = 2;
 }
+
+message LockedSection {
+  bytes encrypted = 1;
+}

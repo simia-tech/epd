@@ -5,3 +5,7 @@ package pb;
 message UnlockedContact {
   map<string, bytes> section_keys = 1;
 }
+
+message LockedContact {
+  bytes encrypted = 1;
+}
