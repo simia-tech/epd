@@ -4,8 +4,8 @@ import "crypto/rand"
 
 type Key []byte
 
-func GenerateKey(size int) Key {
-	key := make([]byte, size)
+func GenerateKey() Key {
+	key := make([]byte, 32)
 	rand.Read(key)
 	return key
 }

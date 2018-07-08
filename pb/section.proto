@@ -4,7 +4,8 @@ package pb;
 
 message UnlockedSection {
   string name = 1;
-  bytes content_key = 2;
+  repeated string member_ids = 2;
+  bytes content_key = 3;
 }
 
 message LockedSection {

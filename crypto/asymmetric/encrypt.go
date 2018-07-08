@@ -16,7 +16,7 @@ func Encrypt(plaintext []byte, publicKeyBytes PublicKey) ([]byte, error) {
 		return nil, errx.Annotatef(err, "parse pkcs1 public key")
 	}
 
-	key := symmetric.GenerateKey(32)
+	key := symmetric.GenerateKey()
 
 	encryptedKey, err := rsa.EncryptPKCS1v15(rand.Reader, publicKey, key)
 	if err != nil {

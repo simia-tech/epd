@@ -7,7 +7,7 @@ import (
 	"github.com/simia-tech/epd/pb"
 )
 
-func Generate() (*pb.UnlockedDocument, asymmetric.PrivateKey, error) {
+func Generate(name string) (*pb.UnlockedDocument, asymmetric.PrivateKey, error) {
 	id := randomID()
 
 	publicKey, privateKey, err := asymmetric.GenerateKeyPair()
@@ -18,7 +18,7 @@ func Generate() (*pb.UnlockedDocument, asymmetric.PrivateKey, error) {
 	return &pb.UnlockedDocument{
 		Id:        id,
 		PublicKey: publicKey,
-		Contacts:  map[string]*pb.UnlockedContact{},
+		Name:      name,
 		Sections:  map[string]*pb.UnlockedSection{},
 	}, privateKey, nil
 }
