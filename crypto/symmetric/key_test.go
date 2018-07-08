@@ -19,6 +19,6 @@ func TestGenerateKey(t *testing.T) {
 	}
 }
 
-func generateKey() symmetric.Key {
+func makeKey() symmetric.Key {
 	return symmetric.GenerateKey(32)
 }

@@ -10,7 +10,7 @@ import (
 )
 
 func TestDecrypt(t *testing.T) {
-	key := generateKey()
+	key := makeKey()
 
 	ciphertext, err := symmetric.Encrypt([]byte("plaintext"), key)
 	require.NoError(t, err)

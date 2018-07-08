@@ -10,7 +10,7 @@ import (
 )
 
 func TestSign(t *testing.T) {
-	_, privateKey := generateKeyPair(t)
+	_, privateKey := makeKeyPair(t)
 
 	signature, err := asymmetric.Sign([]byte("ciphertext"), privateKey)
 	require.NoError(t, err)

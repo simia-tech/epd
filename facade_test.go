@@ -13,7 +13,7 @@ import (
 )
 
 func TestUnlockedFacadeAddSection(t *testing.T) {
-	document, _ := generateDocument(t)
+	document, _ := makeDocument(t)
 	facade := epd.NewUnlockedFacade(document)
 
 	sectionID := facade.AddSection("Test")
@@ -23,10 +23,10 @@ func TestUnlockedFacadeAddSection(t *testing.T) {
 }
 
 func TestUnlockedFacadeAddMember(t *testing.T) {
-	foreignDocument, _ := generateDocument(t)
+	foreignDocument, _ := makeDocument(t)
 	contactID := foreignDocument.Id
 
-	document, _ := generateDocument(t)
+	document, _ := makeDocument(t)
 	facade := epd.NewUnlockedFacade(document)
 
 	sectionID := facade.AddSection("Test")
@@ -37,11 +37,11 @@ func TestUnlockedFacadeAddMember(t *testing.T) {
 }
 
 func TestUnlockedFacadeLock(t *testing.T) {
-	foreignDocument, _ := generateDocument(t)
+	foreignDocument, _ := makeDocument(t)
 	memoryResolver := &resolver.Memory{Documents: []*pb.UnlockedDocument{foreignDocument}}
 	contactID := foreignDocument.Id
 
-	document, privateKey := generateDocument(t)
+	document, privateKey := makeDocument(t)
 	facade := epd.NewUnlockedFacade(document)
 
 	sectionID := facade.AddSection("Test")
@@ -64,11 +64,11 @@ func TestLockedFacadeVerify(t *testing.T) {
 }
 
 func makeLockedDocument(tb testing.TB) (*pb.LockedDocument, asymmetric.PrivateKey) {
-	foreignDocument, _ := generateDocument(tb)
+	foreignDocument, _ := makeDocument(tb)
 	memoryResolver := &resolver.Memory{Documents: []*pb.UnlockedDocument{foreignDocument}}
 	contactID := foreignDocument.Id
 
-	document, privateKey := generateDocument(tb)
+	document, privateKey := makeDocument(tb)
 	facade := epd.NewUnlockedFacade(document)
 
 	sectionID := facade.AddSection("Test")

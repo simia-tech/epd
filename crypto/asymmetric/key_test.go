@@ -10,12 +10,12 @@ import (
 )
 
 func TestGenerateKeyPair(t *testing.T) {
-	publicKey, privateKey := generateKeyPair(t)
+	publicKey, privateKey := makeKeyPair(t)
 	assert.NotEmpty(t, publicKey)
 	assert.NotEmpty(t, privateKey)
 }
 
-func generateKeyPair(tb testing.TB) (asymmetric.PublicKey, asymmetric.PrivateKey) {
+func makeKeyPair(tb testing.TB) (asymmetric.PublicKey, asymmetric.PrivateKey) {
 	publicKey, privateKey, err := asymmetric.GenerateKeyPair()
 	require.NoError(tb, err)
 	return publicKey, privateKey

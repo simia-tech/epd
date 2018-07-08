@@ -10,7 +10,7 @@ import (
 )
 
 func TestVerify(t *testing.T) {
-	publicKey, privateKey := generateKeyPair(t)
+	publicKey, privateKey := makeKeyPair(t)
 
 	signature, err := asymmetric.Sign([]byte("ciphertext"), privateKey)
 	require.NoError(t, err)

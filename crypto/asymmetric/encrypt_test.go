@@ -10,7 +10,7 @@ import (
 )
 
 func TestEncrypt(t *testing.T) {
-	publicKey, _ := generateKeyPair(t)
+	publicKey, _ := makeKeyPair(t)
 
 	ciphertext, err := asymmetric.Encrypt([]byte("plaintext"), publicKey)
 	require.NoError(t, err)

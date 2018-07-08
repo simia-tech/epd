@@ -12,7 +12,7 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
-	document, privateKey := generateDocument(t)
+	document, privateKey := makeDocument(t)
 
 	assert.NotEmpty(t, document.Id)
 	assert.NotEmpty(t, document.PublicKey)
@@ -22,7 +22,7 @@ func TestGenerate(t *testing.T) {
 	assert.NotEmpty(t, privateKey)
 }
 
-func generateDocument(tb testing.TB) (*pb.UnlockedDocument, asymmetric.PrivateKey) {
+func makeDocument(tb testing.TB) (*pb.UnlockedDocument, asymmetric.PrivateKey) {
 	document, privateKey, err := epd.Generate()
 	require.NoError(tb, err)
 	return document, privateKey
