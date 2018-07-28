@@ -9,6 +9,10 @@ type Memory struct {
 	Documents []*pb.UnlockedDocument
 }
 
+func NewMemory() *Memory {
+	return &Memory{Documents: []*pb.UnlockedDocument{}}
+}
+
 func (m *Memory) ResolvePublicKey(contactID string) (asymmetric.PublicKey, error) {
 	for _, document := range m.Documents {
 		if document.Id == contactID {
