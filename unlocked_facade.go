@@ -43,7 +43,7 @@ func (uf *UnlockedFacade) Lock(privateKey asymmetric.PrivateKey, resolver resolv
 		PublicKey: uf.document.PublicKey,
 		Name:      uf.document.Name,
 		Contacts:  map[string]*pb.LockedContact{},
-		Sections:  map[string]*pb.LockedSection{},
+		Sections:  nil,
 	}
 
 	contacts := map[string]*pb.UnlockedContact{}
@@ -67,7 +67,12 @@ func (uf *UnlockedFacade) Lock(privateKey asymmetric.PrivateKey, resolver resolv
 		if err != nil {
 			return nil, errx.Annotatef(err, "section %s", sectionID)
 		}
-		document.Sections[sectionID] = lockedSection
+
+		if document.Sections == nil {
+			document.Sections = map[string]*pb.LockedSection{sectionID: lockedSection}
+		} else {
+			document.Sections[sectionID] = lockedSection
+		}
 	}
 
 	for contactID, unlockedContact := range contacts {
