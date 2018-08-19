@@ -8,7 +8,7 @@ import (
 )
 
 func Generate(name string) (*pb.UnlockedDocument, asymmetric.PrivateKey, error) {
-	id := randomID()
+	id := RandomDocumentID()
 
 	publicKey, privateKey, err := asymmetric.GenerateKeyPair()
 	if err != nil {

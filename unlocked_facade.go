@@ -18,7 +18,7 @@ func NewUnlockedFacade(document *pb.UnlockedDocument) *UnlockedFacade {
 }
 
 func (uf *UnlockedFacade) AddSection(name string) string {
-	sectionID := randomID()
+	sectionID := RandomSectionID()
 	uf.document.Sections[sectionID] = &pb.UnlockedSection{
 		Name:       name,
 		ContentKey: symmetric.GenerateKey(),

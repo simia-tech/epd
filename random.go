@@ -2,12 +2,18 @@ package epd
 
 import (
 	"crypto/rand"
-
-	"github.com/lytics/base62"
+	"encoding/base32"
+	"strings"
 )
 
-func randomID() string {
-	id := make([]byte, 16)
+func RandomDocumentID() string {
+	id := make([]byte, 10)
 	rand.Read(id)
-	return base62.StdEncoding.EncodeToString(id)[:16]
+	return strings.ToLower(base32.StdEncoding.EncodeToString(id))
+}
+
+func RandomSectionID() string {
+	id := make([]byte, 10)
+	rand.Read(id)
+	return strings.ToLower(base32.StdEncoding.EncodeToString(id))
 }
